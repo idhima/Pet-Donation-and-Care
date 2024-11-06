@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useUser } from '../context/UserContext';
 
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { login } = useUser();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -14,9 +16,8 @@ function LoginPage() {
             });
             const data = await response.json();
             if (response.ok) {
+                login(data.token);
                 alert('Login successful');
-                // Store token in localStorage if needed
-                localStorage.setItem('token', data.token);
             } else {
                 alert(data.message);
             }
@@ -50,3 +51,4 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
