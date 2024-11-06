@@ -1,0 +1,23 @@
+pet-donation-care/
+├── backend/
+│   ├── app.js
+│   ├── models/
+│   │   ├── Pet.js
+│   │   └── User.js
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   └── petRoutes.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   └── petController.js
+│   └── config/
+│       └── db.js
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── App.js
+│   │   └── index.js
+│   └── public/
+├── package.json
+└── README.md
