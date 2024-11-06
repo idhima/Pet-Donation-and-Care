@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useUser } from '../context/UserContext';
 
 function RegisterPage() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('adopter');
+    const { login } = useUser();
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -16,6 +18,7 @@ function RegisterPage() {
             });
             const data = await response.json();
             if (response.ok) {
+                login(data.token);
                 alert('Registration successful');
             } else {
                 alert(data.message);
@@ -61,3 +64,4 @@ function RegisterPage() {
 }
 
 export default RegisterPage;
+
