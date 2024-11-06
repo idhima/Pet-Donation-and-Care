@@ -38,3 +38,29 @@ export const UserProvider = ({ children }) => {
         </UserContext.Provider>
     );
 };
+
+//for checking token expiry
+import jwt_decode from 'jwt-decode';
+
+// In the `useEffect` where you check for the token:
+useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        try {
+            const decoded = jwt_decode(token);
+            const currentTime = Date.now() / 1000;
+            if (decoded.exp > currentTime) {
+                setUser({ token });
+            } else {
+                // If the token is expired, remove it
+                localStorage.removeItem('token');
+                setUser(null);
+            }
+        } catch (error) {
+            localStorage.removeItem('token');
+            setUser(null);
+        }
+    }
+    setLoading(false);
+}, []);
+
